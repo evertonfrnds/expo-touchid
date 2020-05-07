@@ -1,11 +1,14 @@
 import React from 'react'
 import {View,Text, StatusBar, ImageBackground, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {useAuth} from '../../contexts/auth';
 
 import styles from './styles';
 const image = require('../../../assets/gradient/background.png');
 
 const FastSignIn: React.FC = () => {
+
+    const {user} = useAuth();
 
     const navigation = useNavigation();
     function handleChangeAccount(){
@@ -15,11 +18,11 @@ const FastSignIn: React.FC = () => {
         <View style={styles.container}>
             <StatusBar translucent backgroundColor='#fff' barStyle='dark-content'/>
             <View style={styles.headerContainer}>
-                <Text style={styles.headerTitle}>Everton, é você?</Text>
+                <Text style={styles.headerTitle}>{user?.firstName}, é você?</Text>
             </View>
             <View style={styles.profileContainer}>
                 <ImageBackground source={image} style={styles.imageProfile} borderRadius={50}/>
-                <Text style={styles.profileTitle}>Everton Fernandes</Text>
+                <Text style={styles.profileTitle}>{user?.firstName+' '+user?.lastName}</Text>
                 <Text style={styles.profileDesc}>Ultima atividade: 07/06/2020</Text>
             </View>
             <View style={styles.buttonList}>

@@ -13,7 +13,7 @@ export function signIn(): Promise<Response>{
             resolve({
                 token: 'evertqweqe12nueuvinurfufqef',
                 user:{
-                    firstName: 'Everton',
+                    firstName: 'Leticia',
                     lastName: 'Fernandes',
                     email: 'evertonfrnds@gmail.com'
                 }

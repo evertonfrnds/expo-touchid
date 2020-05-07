@@ -11,8 +11,8 @@ interface User{
 }
 
 interface AuthContextData{
-    signed: string | null;
-    user : object | null;
+    user : User | null;
+    token: string | null;
     loading: boolean;
     signIn(): void;
     signOut():void;
@@ -23,41 +23,37 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 const AuthProvider: React.FC = ({children}) => {
 
     const [user, setUser] = useState<User | null>(null);
+    const [token, setToken] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
-    const [signed, setSigned] = useState<string | null>(null);
 
     useEffect(()=>{
         async function loadStorageData() {
          const storagedUser = await AsyncStorage.getItem('@RNAuth:user');
-         const storagedSigned = await AsyncStorage.getItem('@RNAuth:signed');
+         const storagedToken = await AsyncStorage.getItem('@RNAuth:token');
          if(storagedUser){
             setUser(JSON.parse(storagedUser));
-            setSigned(storagedSigned ? 'true': null);
-            console.log(storagedSigned, 'provider');
-            console.log(storagedUser, 'provider');
+            setToken(storagedToken ? storagedToken : null);
             setLoading(false);
-            }
-         } 
+         }
+        }
         loadStorageData();
         setLoading(false);
      }, [])
 
     async function signOut(){
         await AsyncStorage.removeItem('@RNAuth:token');
-        await AsyncStorage.removeItem('@RNAuth:signed');
-        setSigned(null);
+        setToken(null);
     }
     async function signIn(){
         const response = await Auth.signIn();
         setUser(response.user);
-        setSigned('true');
+        setToken(response.token);
         await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
         await AsyncStorage.setItem('@RNAuth:token', response.token);
-        await AsyncStorage.setItem('@RNAuth:signed', 'true');
     }
 
     return(
-        <AuthContext.Provider value={{loading,signed , user, signIn, signOut }}>
+        <AuthContext.Provider value={{loading, token, user, signIn, signOut }}>
             {children}
         </AuthContext.Provider>
     ) 
