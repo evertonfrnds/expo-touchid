@@ -13,12 +13,12 @@ export function signIn(): Promise<Response>{
             resolve({
                 token: 'evertqweqe12nueuvinurfufqef',
                 user:{
-                    firstName: 'Leticia',
-                    lastName: 'Fernandes',
+                    firstName: 'Everton',
+                    lastName: 'Bezerra',
                     email: 'evertonfrnds@gmail.com'
                 }
             })
-        },1000)
+        },200)
     })
 
 }

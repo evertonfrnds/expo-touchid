@@ -14,8 +14,9 @@ const Routes: React.FC = () => {
                 <ActivityIndicator size='large' color='#999'/>
             </View>
         )
+    }else{
+        return token ? <AppRoutes/> : user ? <FastAuth/> : <AuthRoutes/>
     }
-    return token ? <AppRoutes/> : user ? <FastAuth/> : <AuthRoutes/>
 }
 
 export default Routes;

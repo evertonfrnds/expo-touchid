@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         paddingHorizontal:15,
         borderRadius: 10,
-        marginTop: 10
+        marginTop: 10,
     },
     inputLabel:{
         fontSize: 12,

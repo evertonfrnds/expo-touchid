@@ -18,12 +18,12 @@ const SignIn: React.FC = () => {
             <StatusBar translucent backgroundColor="transparent" barStyle='light-content'/>
             <ImageBackground source={image} style={styles.headerContainer}>
                 <Text style={styles.headerTitle}>Faça o login</Text>
-                <Text style={styles.headerDesc}>Everton Fernandes</Text>
+                <Text style={styles.headerDesc}>Lorem ipsum</Text>
             </ImageBackground>
             <View style={styles.contentContainer}>
                 <View style={styles.inputContainer}>
                     <Text style={styles.inputLabel}>Email</Text>
-                    <TextInput autoCapitalize='none' keyboardType='email-address' style={styles.inputEntry}/>
+                    <TextInput autoCapitalize='none' style={styles.inputEntry}/>
                 </View>
                 <View style={styles.inputContainer}>
                     <Text style={styles.inputLabel}>Senha</Text>
